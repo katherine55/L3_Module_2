@@ -2,6 +2,9 @@ package intro_to_file_io;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,8 +71,10 @@ public class ToDoLists implements ActionListener {
 
 			try {
 				FileWriter fw = new FileWriter("src/intro_to_file_io/groceryList.txt");
-
-				fw.write(myList + "");
+				for (int i = 0; i < myList.size(); i++) {
+				
+				fw.write(myList.get(i) + "\n");
+				}
 				// The save button will save the current task list to a file.
 				fw.close();
 			} catch (IOException e1) {
@@ -79,6 +84,25 @@ public class ToDoLists implements ActionListener {
 		}
 		if (e.getSource().equals(button4)) {
 			// The load button will load a new task list into the program and display it.
+			try {
+				BufferedReader br = new BufferedReader(new FileReader("src/intro_to_file_io/groceryList.txt"));
+				
+				String line = br.readLine();
+				while(line != null){
+					System.out.println(line);
+					myList.add(line);
+					line = br.readLine();
+				}
+				
+				br.close();
+			} catch (FileNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+
 		}
 
 	}

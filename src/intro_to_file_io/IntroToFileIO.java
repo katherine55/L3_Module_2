@@ -28,7 +28,7 @@ public class IntroToFileIO {
 		
 		//Read from a file one line at a time
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/intro_to_file_io/test.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("src/intro_to_file_io/groceryList.txt"));
 			
 			String line = br.readLine();
 			while(line != null){
